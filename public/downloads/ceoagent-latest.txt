@@ -1,0 +1,3 @@
+ceoAgent download placeholder
+
+Replace this file with the real ceoAgent installer before deploying.
