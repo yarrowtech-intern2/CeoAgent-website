@@ -47,7 +47,24 @@ const faqs = [
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [contactStatus, setContactStatus] = useState("");
+  const [railAtStart, setRailAtStart] = useState(true);
+  const [railAtEnd, setRailAtEnd] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const railRef = useRef<HTMLDivElement>(null);
+
+  function updateRailBounds() {
+    const rail = railRef.current;
+    if (!rail) return;
+    setRailAtStart(rail.scrollLeft <= 4);
+    setRailAtEnd(rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4);
+  }
+
+  function scrollRail(direction: number) {
+    const rail = railRef.current;
+    if (!rail) return;
+    const amount = rail.clientWidth * 0.8 * direction;
+    rail.scrollBy({ left: amount, behavior: "smooth" });
+  }
 
   function openContact() {
     setMenuOpen(false);
@@ -114,11 +131,29 @@ export default function Home() {
       </div>
 
       <main id="home">
-        <section className="hero hero-video" aria-labelledby="hero-title">
-          <video className="hero-bg" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
-            <source src={HERO_VIDEO} type="video/mp4" />
-          </video>
-          <h1 id="hero-title" className="sr-only">CEO Agent OS</h1>
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="hero-media">
+            <video className="hero-bg" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
+              <source src={HERO_VIDEO} type="video/mp4" />
+            </video>
+          </div>
+          <div className="hero-context">
+            <p className="eyebrow">AI-powered virtual company</p>
+            <h1 id="hero-title">CEO Agent OS</h1>
+            <p className="hero-line gradient-text">Delegate real work to specialist agents.</p>
+            <p>
+              Give it a goal in plain English. The CEO agent decides which departments
+              should handle it, runs the work, and hands back a finished output.
+            </p>
+            <div className="hero-actions">
+              <a className="primary-button" href={DOWNLOAD_FILE} download>
+                Download for Windows
+              </a>
+              <button className="secondary-button" type="button" onClick={openContact}>
+                Request access
+              </button>
+            </div>
+          </div>
         </section>
 
         <section className="text-feature reveal" aria-labelledby="problem-title">
@@ -162,9 +197,31 @@ export default function Home() {
         </section>
 
         <section id="departments" className="rail-section reveal" aria-labelledby="departments-title">
-          <p className="section-kicker">Meet the departments</p>
-          <h2 id="departments-title">Specialists for the work behind the company.</h2>
-          <div className="department-rail">
+          <div className="rail-head">
+            <div>
+              <p className="section-kicker">Meet the departments</p>
+              <h2 id="departments-title">Specialists for the work behind the company.</h2>
+            </div>
+            <div className="rail-controls">
+              <button
+                type="button"
+                aria-label="Scroll departments left"
+                onClick={() => scrollRail(-1)}
+                disabled={railAtStart}
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                aria-label="Scroll departments right"
+                onClick={() => scrollRail(1)}
+                disabled={railAtEnd}
+              >
+                ›
+              </button>
+            </div>
+          </div>
+          <div className="department-rail" ref={railRef} onScroll={updateRailBounds}>
             {departments.map(([name, description]) => (
               <article key={name}>
                 <span>{name.slice(0, 2)}</span>
