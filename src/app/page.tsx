@@ -7,8 +7,6 @@ const DOWNLOAD_FILE =
 const DOWNLOAD_VERSION = "1.0.0";
 const DOWNLOAD_SIZE = "Windows installer";
 const CONTACT_EMAIL = "hello@ceoagent.com";
-const HERO_VIDEO =
-  "https://res.cloudinary.com/dc3qprub3/video/upload/v1787309655/ceo-agent_ioiy00.mp4";
 
 const departments = [
   ["Manager", "Breaks initiatives into tasks and tracks them in Linear"],
@@ -121,41 +119,22 @@ export default function Home() {
         </nav>
       </header>
 
-      <div className="product-bar" aria-label="Product actions">
-        <strong>CEO Agent OS</strong>
-        <div>
-          <a href="#how">Explore</a>
-          <a className="mini-buy" href={DOWNLOAD_FILE} download>
-            Download
-          </a>
-        </div>
-      </div>
-
       <main id="home">
         <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-media">
-            <video className="hero-bg" autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
-              <source src={HERO_VIDEO} type="video/mp4" />
-            </video>
-          </div>
           <div className="hero-context">
-            <p className="eyebrow">AI-powered virtual company</p>
+            <p className="hero-kicker">Introducing</p>
             <h1 id="hero-title" className="gradient-text">
-              CEO Agent OS
+              CeoAgent
             </h1>
-            <p className="hero-line gradient-text">Delegate real work to specialist agents.</p>
-            <p>
-              Give it a goal in plain English. The CEO agent decides which departments
-              should handle it, runs the work, and hands back a finished output.
-            </p>
-            <div className="hero-actions">
-              <a className="primary-button" href={DOWNLOAD_FILE} download>
-                Download for Windows
-              </a>
-              <button className="secondary-button" type="button" onClick={openContact}>
-                Request access
-              </button>
-            </div>
+            <p className="hero-subtitle">Completing a task just a prompt away, just ask the agent</p>
+          </div>
+          <div className="hero-media">
+            <img
+              src="https://res.cloudinary.com/dc3qprub3/image/upload/v1787387213/ceoagentwebp_pd0a86.webp"
+              alt="CeoAgent dashboard preview showing today's tasks, emails, live logs, run overview, and success rate"
+              width="981"
+              height="512"
+            />
           </div>
         </section>
 
