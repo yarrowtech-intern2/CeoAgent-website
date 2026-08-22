@@ -2,7 +2,8 @@
 
 import { FormEvent, useRef, useState } from "react";
 
-const DOWNLOAD_FILE = "/downloads/ceoagent-latest.txt";
+const DOWNLOAD_FILE =
+  "https://github.com/yarrowtech-intern2/CeoAgent-releases/releases/download/v0.1.4/CEO-Agent-OS-Setup-0.1.4.exe";
 const DOWNLOAD_VERSION = "1.0.0";
 const DOWNLOAD_SIZE = "Windows installer";
 const CONTACT_EMAIL = "hello@ceoagent.com";
@@ -139,7 +140,9 @@ export default function Home() {
           </div>
           <div className="hero-context">
             <p className="eyebrow">AI-powered virtual company</p>
-            <h1 id="hero-title">CEO Agent OS</h1>
+            <h1 id="hero-title" className="gradient-text">
+              CEO Agent OS
+            </h1>
             <p className="hero-line gradient-text">Delegate real work to specialist agents.</p>
             <p>
               Give it a goal in plain English. The CEO agent decides which departments
@@ -350,17 +353,51 @@ export default function Home() {
       </main>
 
       <footer className="footer">
-        <a className="brand" href="#home" aria-label="CEO Agent OS home">
-          <img className="brand-logo" src="/Logo.png" alt="" width="28" height="28" />
-          <span>CEO Agent OS</span>
-        </a>
-        <div className="footer-links">
-          <a href="#how">How it works</a>
-          <a href="#departments">Departments</a>
-          <a href="#download">Download</a>
-          <button className="link-button" type="button" onClick={openContact}>
-            Contact
-          </button>
+        <div className="footer-top">
+          <div className="footer-brand">
+            <a className="brand" href="#home" aria-label="CEO Agent OS home">
+              <img className="brand-logo" src="/Logo.png" alt="" width="28" height="28" />
+              <span>CEO Agent OS</span>
+            </a>
+            <p>AI-powered virtual company that delegates real work to specialist agents.</p>
+            <div className="social-links" aria-label="Social media">
+              <a href="#" aria-label="LinkedIn">in</a>
+              <a href="#" aria-label="X (Twitter)">X</a>
+              <a href="#" aria-label="Instagram">IG</a>
+              <a href="#" aria-label="GitHub">GH</a>
+            </div>
+          </div>
+
+          <div className="footer-columns">
+            <div className="footer-col">
+              <h4>Product</h4>
+              <a href="#how">How it works</a>
+              <a href="#departments">Departments</a>
+              <a href="#download">Download</a>
+              <button className="link-button" type="button" onClick={openContact}>
+                Contact
+              </button>
+            </div>
+            <div className="footer-col">
+              <h4>Our portfolio</h4>
+              <a href="https://thebetterpass.com" target="_blank" rel="noreferrer">
+                BetterPass
+              </a>
+              <a href="https://yarrowtech.com" target="_blank" rel="noreferrer">
+                YarrowTech
+              </a>
+              <a href="https://edifyeight.com" target="_blank" rel="noreferrer">
+                EdifyEight
+              </a>
+              <a href="https://matebid.com" target="_blank" rel="noreferrer">
+                MateBid
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <span>© {new Date().getFullYear()} YarrowTech. All rights reserved.</span>
         </div>
       </footer>
 
